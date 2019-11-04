@@ -278,9 +278,9 @@ If the terminal displays `Successfully installed MegaWise and imported test data
     ```bash
     $ cd $WORK_DIR/conf
     $ wget https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/chewie_main.yaml \
-    wget https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/etcd.yaml \
-    wget https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/megawise_config_template.yaml \
-    wget https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/render_engine.yaml
+    https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/etcd.yaml \
+    https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/megawise_config_template.yaml \
+    https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/render_engine.yaml
     ```
 
 6. Modify config files based on the hardware environment of MegaWise.
@@ -306,19 +306,6 @@ If the terminal displays `Successfully installed MegaWise and imported test data
           For the `cpu` part, `physical_memory` and `partition_memory` respectively represents the available memory size for MegaWise and the memory size for the data cache partition. It is recommended that you set both `partition_memory` and `physical_memory` to more than 70 percent of the server memory.
       
           For the `gpu` part, `gpu_num` represents the number of GPUs used by MegaWise. `physical_memory` and `partition_memory` respectively represents the available video memory size for MegaWise and the video memory size for the data cache partition. It is recommended that you reserve 2 GB of video memory to store the intermediate results during computation by setting `partition_memory` and `physical_memory` to a value that equals the video memory of a single GPU minus 2.
-      
-      2. Navigate to the following code:
-      
-         ```yaml
-         log:
-             path: /tmp
-             level: 0
-             rotating: yes
-             rotating_size_limit: 64
-             rotating_number_limit: 10 
-         ```
-
-         `path` specifies the log path of the chewie process. The default is `/tmp`. Please change the value of `path` to `$WORK_DIR/logs` or other directories that you have write access.
 
    
     2. Open `megawise_config_template.yaml` in the `conf` directory.
@@ -370,19 +357,6 @@ If the terminal displays `Successfully installed MegaWise and imported test data
             `cache_size` in `dict_config` represents the memory size for encoding string dictionaries in bytes. 
 
             `cache_size` in `hash_config` represents the memory size for encoding string hashes in bytes.
-
-        3. Navigate to the following code:
-
-            ```yaml
-            log_config:
-              path: @log_path@
-              level: 2                    # optional: trace = 0, debug = 1, info = 2, warn = 3, error = 4, critical = 5, off = 6
-              rotating: yes               # yes means rotated log, no means non-rotated log;
-              rotating_size_limit: 64     # 64 MB, valid when rotating is yes
-              rotating_number_limit: 10   # valid when rotating is yes
-            ```
-            
-            `path` specifies the log path of the MegaWise server. The default is `/tmp`. Please change the value of `path` to `$WORK_DIR/logs` or other directories that you have write access.
 
 
 7. Run MegaWise.
