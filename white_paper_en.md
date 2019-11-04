@@ -44,9 +44,9 @@ The JIT system also increases the compilation speed with less than 20 millisecon
 
 ### No complex indexing, downsampling, or pre-aggregation
 
-Traditional data repositories often use indexing, downsampling, and pre-aggregation to support massive-scale data analytics. These technologies need a long pre-processing step and cannot meet the requirements to process massive-scale, streaming data in real time. In comparison, MegaWise does not need indexing, downsampling, or pre-aggregation. With the support of GPUs, MegaWise can perform real-time queries for billion-scale datasets in tens or hundreds of milliseconds.
+Traditional data repositories often use indexing, downsampling, and pre-aggregation to support massive-scale data analytics. These technologies need a long preprocessing step and cannot meet the requirements to process massive-scale, streaming data in real time. In comparison, MegaWise does not need indexing, downsampling, or pre-aggregation. With the support of GPUs, MegaWise can perform real-time queries for billion-scale datasets in tens or hundreds of milliseconds.
 
-Avoiding using indexing, downsampling, and pre-aggregation comes with the following benefits: first, you do not have to waste extra resources modelling data. You just need to import the data to perform data queries in real time. Second, less pre-processing means that MegaWise can load data faster, which is essential for scenarios such as data stream processing and high-frequency data processing.
+Avoiding using indexing, downsampling, and pre-aggregation comes with the following benefits: first, you do not have to waste extra resources modelling data. You just need to import the data to perform data queries in real time. Second, less preprocessing means that MegaWise can load data faster, which is essential for scenarios such as data stream processing and high-frequency data processing.
 
 
 
