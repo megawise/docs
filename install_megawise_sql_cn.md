@@ -279,9 +279,9 @@
     ```bash
     $ cd $WORK_DIR/conf
     $ wget https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/chewie_main.yaml \
-    wget https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/etcd.yaml \
-    wget https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/megawise_config_template.yaml \
-    wget https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/render_engine.yaml
+    https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/etcd.yaml \
+    https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/megawise_config_template.yaml \
+    https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/render_engine.yaml
     ```
 
 6. 根据 MegaWise 所在的服务器环境修改配置文件。
@@ -307,19 +307,7 @@
       `cpu` 部分，`physical_memory` 和 `partition_memory`分别表示 MegaWise 可用的内存总容量和数据缓存分区的内存容量。建议将 `partition_memory` 和 `physical_memory` 均设置为服务器物理内存总量的70%以上；
    
       `gpu` 部分，`gpu_num` 表示当前 MegaWise 使用的 GPU 数量，`physical_memory` 和 `partition_memory` 分别表示 MegaWise 可用的显存总容量和数据缓存分区的显存容量。建议预留 2GB 显存用于存储计算过程中的中间结果，即将 `partition_memory` 和 `physical_memory` 均设置为单张显卡显存容量的值减2。
-
-        2. 定位到如下片段：
-
-            ```yaml
-            log:
-                path: /tmp
-                level: 0
-                rotating: yes
-                rotating_size_limit: 64
-                rotating_number_limit: 10                          
-            ```
-        `log` 部分，`path` 表示chewie进程的日志路径，默认 `/tmp` ,请改成 `$WORK_DIR/logs` ，或者其他能保证当前用户拥有写权限的路径。
-        
+      
    
     2. 打开 `conf` 目录下面的 `megawise_config_template.yaml` 配置文件。
    
@@ -371,19 +359,6 @@
 
             `hash_config` 中的 `cache_size` 表示用于字符串哈希编码的内存总量，单位为字节。
 
-        3. 定位到如下片段并设置相关参数。
-
-            ```yaml
-              log_config:
-                path: @log_path@
-                level: 2                    # optional: trace = 0, debug = 1, info = 2, warn = 3, error = 4, critical = 5, off = 6
-                rotating: yes               # yes means rotated log, no means non-rotated log;
-                rotating_size_limit: 64     # 64 MB, valid when rotating is yes
-                rotating_number_limit: 10   # valid when rotating is yes
-            ```
-
-            `log_config` 部分，`path` 表示 MegaWise server 进程的日志路径，默认 `/tmp`,请改成 `$WORK_DIR/logs` ，或者其他能保证当前用户拥有写权限的路径。
-
 
 7. 启动 MegaWise。
 
@@ -393,7 +368,6 @@
                             -v $WORK_DIR/data:/megawise/data \
                             -v $WORK_DIR/logs:/megawise/logs \
                             -v $WORK_DIR/server_data:/megawise/server_data \
-                            -v $WORK_DIR/logs:/megawise/logs \
                             -v /home/$USER/.nv:/home/megawise/.nv \
                             -p 5433:5432 \
                             $IMAGE_ID
