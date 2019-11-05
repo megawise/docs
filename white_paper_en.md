@@ -28,7 +28,7 @@ Vectorized queries lay foundation to accelerated data analytics of MegaWise. Vec
 Vectorized queries can also be applied to CPUs. Modern CPUs usually provide advanced vector extensions which integrates wide-character execution units that can process multiple data items in parallel. The SQL engine of MegaWise can drive multiple GPUs and CPUs for vectorized queries. Even for CPUs, there is a performance increase in vectorized queries compared with traditional multi-threading methods.
 
 
-### Multi-layer data cache
+### Multilayer data cache
 
 
 MegaWise completely optimized the memory and the computing layer for the best performance. MegaWise builds 3 layers of cache in each physical node, including GPU video memory, main memory, and SSD. Data can be intelligently placed based on data hotness and compute locality. Hot data that needs to be frequently and continuously processed is saved to the GPU video memory to avoid PCIe, thus reaching the highest access speed. MegaWise can also use NVIDIA NVLink to speed up data transfer from CPUs to GPUs and are faster by 2.5 times compared with systems without NVLink. This feature can be applied in IBM OpenPOWER.
