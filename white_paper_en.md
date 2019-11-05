@@ -23,7 +23,7 @@ MegaWise supports standard SQL and PostgreSQL grammar. The following interfaces 
 
 ### Vectorized queries and concolic execution
 
-Vectorized queries lay foundation to accelerated data analytics of MegaWise. Vectorized code allows the processor to compute multiple data items simultaneously. Currently, a single GPU contains thousands of compute units, which indicates that vectorized query in GPUs can process thousands of data items in parallel for a single period. Compared with CPUs, the concurrency of data processing is increased by 2 to 3 orders of magnitudes.
+Vectorized queries lay foundation to accelerated data analytics of MegaWise. Vectorized code allows the processor to compute multiple data items simultaneously. Currently, a single GPU contains thousands of compute units, which indicates that vectorized query in GPUs can process thousands of data items in parallel for a single period. Compared with CPUs, the concurrency level of data processing is increased by 2 to 3 orders of magnitudes.
 
 Vectorized queries can also be applied to CPUs. Modern CPUs usually provide advanced vector extensions which integrates wide-character execution units that can process multiple data items in parallel. The SQL engine of MegaWise can drive multiple GPUs and CPUs for vectorized queries. Even for CPUs, there is a performance increase in vectorized queries compared with traditional multi-threading methods.
 
