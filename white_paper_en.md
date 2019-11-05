@@ -10,7 +10,7 @@ Following the continuous development of digitalization, data is becoming increas
 
 However, per the previous experience in big data processing, increase in data size does not necessarily lead to increased value. Also, as the performance increase of traditional processors is gradually slowing down and Moore' Law is no longer applicable, it is no longer appropriate to use traditional methods for data analytics.
 
-To assist enterprise users in dealing with new challenges in the data era, ZILLIZ developed a new generation OLAP analytics engine, MegaWise, with full intellectual property. MegaWise is the first to use the massively parallel processing power of GPUs to speed up SQL operations. Compared with traditional solutions, MegaWise has higher throughput, higher cost-effectiveness, and lower latency. While significantly reducing the computation cost per unit, MegaWise can return query results for billion-scale datasets in subseconds.
+To assist enterprise users in dealing with new challenges in the data era, ZILLIZ developed a next-generation OLAP analytics engine, MegaWise, with full intellectual property. MegaWise is the first to use the massively parallel processing power of GPUs to speed up SQL operations. Compared with traditional solutions, MegaWise has higher throughput, higher cost-effectiveness, and lower latency. While significantly reducing the computation cost per unit, MegaWise can return query results for billion-scale datasets in subseconds.
 
 ## MegaWise analytics engine
 
