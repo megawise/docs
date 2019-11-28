@@ -278,15 +278,15 @@
 
     ```bash
     $ cd $WORK_DIR/conf
-    $ wget https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/chewie_main.yaml \
+    $ wget https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/user_config.yaml \
     https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/etcd.yaml \
     https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/megawise_config_template.yaml \
-    https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/render_engine.yaml
+    https://raw.githubusercontent.com/Infini-Analytics/infini/master/config/db/etcd_config_template.yaml
     ```
 
 6. 根据 MegaWise 所在的服务器环境修改配置文件。
 
-   1. 打开 `conf` 目录下面的 `chewie_main.yaml` 配置文件。
+   1. 打开 `conf` 目录下面的 `user_config.yaml` 配置文件。
 
        1. 定位到如下片段：
 
@@ -335,9 +335,9 @@
 
             | 参数                     | 值                   |
             |--------------------------|-------------------------|
-            | `worker_num` |  `chewie_main.yaml` 中的 `gpu_num` 值            |
-            | `physical_memory` |  `chewie_main.yaml` 中的 `physical_memory` 值            |
-            | `partition_memory` |  `chewie_main.yaml` 中的 `partition_memory` 值           |
+            | `worker_num` |  `user_config.yaml` 中的 `gpu_num` 值            |
+            | `physical_memory` |  `user_config.yaml` 中的 `physical_memory` 值            |
+            | `partition_memory` |  `user_config.yaml` 中的 `partition_memory` 值           |
 
         2. 定位到如下片段并设置相关参数。
 
@@ -364,6 +364,7 @@
 
     ```bash
     sudo docker run --gpus all --shm-size 17179869184 \
+                            -e USER=`id -u` -e GROUP=`id -g` \
                             -v $WORK_DIR/conf:/megawise/conf \
                             -v $WORK_DIR/data:/megawise/data \
                             -v $WORK_DIR/logs:/megawise/logs \
@@ -377,13 +378,19 @@
 
     > `--shm-size`
 
-      Docker image 运行时系统分配的内存大小，改值取 `chewie_main.yaml` 配置文件中 `cache` 配置项下的 `cpu` 配置项的 `physical_memory` 的值，单位为字节
+      Docker image 运行时系统分配的内存大小，改值取 `user_config.yaml` 配置文件中 `cache` 配置项下的 `cpu` 配置项的 `physical_memory` 的值，单位为字节
 
     > `-v`
 
       宿主机和 image 之间的目录映射，用 `:` 隔开，前面是宿主机的目录，后面是 Docker image 的目录。
 
       在启动容器时可以通过 `-v` 将本地存储的数据文件映射到容器内，以实现本地文件导入 MegaWise 数据库。
+    
+    > `-e`
+
+      宿主机和 image 之间的用户和组映射。
+
+      在启动容器时可以通过 `-e` 将本地用户和组信息映射到容器内，以实现本地和容器中运行时的权限统一。
 
     > `-p`
 
